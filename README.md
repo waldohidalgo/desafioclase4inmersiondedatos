@@ -20,7 +20,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.pipeline import make_pipeline
 ```
 
-Luego instancio (creo) las características polinomiales y el modelo de regresión lineal escribiendo lo siguiente:
+Luego instancio (creo) las características polinomiales y el modelo de regresión escribiendo lo siguiente:
 
 ```
 degree = 2  # Grado del polinomio (puedes ajustar esto)
@@ -28,7 +28,7 @@ poly_features = PolynomialFeatures(degree=degree)
 linear_regression = LinearRegression()
 ```
 
-Ahora creo una **pipeline** la cual me permite combinar en un solo paso las etapas de generación de características polinomicas y ajustar el modelo de regresión lineal a las caracteristicas polinomiales anteriores. Lo anterior me genera el modelo a utilizar:
+Ahora creo una **pipeline** la cual me permite combinar en un solo paso las etapas de generación de características polinómicas y ajustar el modelo de regresión a las características polinomiales anteriores. Lo anterior me genera el modelo a utilizar:
 
 ```
 model = make_pipeline(poly_features, linear_regression)
@@ -79,7 +79,7 @@ En el segundo desafío se me pide trabajar más con los datos y crear nuevas var
 
 ![Mapa de calor de correlaciones](./img/CorrelacionesMapaCalor.png)
 
-En el curso el instructor utiliza la siguiente tabla hash(diccionario) para sustituir el código que utiliza la encuesta por cadenas de texto explicativas:
+En el curso el instructor utiliza la siguiente tabla hash (diccionario) para sustituir el código que utiliza la encuesta por cadenas de texto explicativas:
 
 ```
 dic_dane = {
@@ -107,7 +107,7 @@ dic_dane = {
        }
 ```
 
-Como yo voy a utilizar las variables explicativas siguientes: 'CONJUNTO_CERRADO', 'TERMINALES_BUS', 'BARES_DISCO', 'RUIDO', 'OSCURO_PELIGROSO', 'PERDIDA_INGRESOS_C19', 'SALARIO_ANUAL_MI'. Necesito de su código para saber el tipo de data que almacena y para posteriormente predecir, para ello tengo la siguiente asociación:
+Como yo voy a utilizar las variables explicativas siguientes: 'CONJUNTO_CERRADO', 'TERMINALES_BUS', 'BARES_DISCO', 'RUIDO', 'OSCURO_PELIGROSO', 'PERDIDA_INGRESOS_C19', 'SALARIO_ANUAL_MI', necesito conocer su código para saber el tipo de data que almacena al chequear en la documentación y para, posteriormente, predecir. Para ello tengo la siguiente asociación:
 
 -'CONJUNTO_CERRADO' es 'NVCBP4'
 -'TERMINALES_BUS' es 'NVCBP14D'
@@ -147,9 +147,9 @@ Y la variable a explicar 'INSEGURIDAD' corresponde a 'NVCBP15C' el cual es:
 
 ![Inseguridad](./img/inseguridad.png)
 
-Recordar que la respuesta 1 a cada pregunta se mantiene y el valor 2 se sustituye por un 0.
+Recordar que la respuesta 1 a cada pregunta se mantiene y el valor 2 se sustituye por un 0 en el dataframe.
 
-Lista la identificación de variables ejecuto el siguiente código para crear las datas de entrenamiento y de testeo siendo la data de entrenamiento correspondiente al 85% de la data y la data de testeo correspondiente al 25% de la data:
+Lista la identificación de variables ejecuto el siguiente código para crear las datas de entrenamiento y de testeo siendo la data de entrenamiento correspondiente al 75% de la data y la data de testeo correspondiente al 25% de la data:
 
 ```
 X = datos_ml[['CONJUNTO_CERRADO','TERMINALES_BUS','BARES_DISCO','RUIDO','OSCURO_PELIGROSO','PERDIDA_INGRESOS_C19','SALARIO_ANUAL_MI']]
@@ -165,7 +165,7 @@ modelo_2 = LinearRegression()
 modelo_2.fit(X_train, y_train)
 ```
 
-Y ahora calculo el error absoluto medio y el coeficiente de correlación (R2) escribiendo el siguiente código:
+Y ahora calculo el error absoluto medio y el coeficiente de determinación (R2) escribiendo el siguiente código:
 
 ```
 y_predict_test = modelo_2.predict(X_test)
@@ -216,7 +216,7 @@ Dicha predicción me genera el siguiente valor:
 
 ![Predicción de Inseguridad para data seleccionada](./img/prediccioninseguridad.png)
 
-Dicha predicción esta muy sobre el valor de 1 el cual corresponde a una respuesta afirmativa para la existencia de inseguridad en el entorno donde se ubica la vivienda. En otras palabras, si la vivienda no esta en un conjunto residencial, si esta cerca de terminales de buses, si esta cerca de discotecas y bares, si esta en un entorno ruidoso, si esta cercad de lotes baldíos o sitios oscuros y peligrosos. si la familia perdio ingresos de manera sustancial por el Covid 19 y si su salario corresponde al sueldo mínimo, entonces existe una alta inseguridad en el entorno de la vivienda.
+Dicha predicción esta muy sobre el valor de 1 el cual corresponde a una respuesta afirmativa para la existencia de inseguridad en el entorno donde se ubica la vivienda. En otras palabras, si la vivienda no esta en un conjunto residencial, si esta cerca de terminales de buses, si esta cerca de discotecas y bares, si esta en un entorno ruidoso, si esta cerca de lotes baldíos o sitios oscuros y peligrosos, si la familia perdio ingresos de manera sustancial por el Covid 19 y si su salario corresponde al sueldo mínimo, entonces existe una alta inseguridad en el entorno de la vivienda.
 
 ## **Resolución cuarto desafío**
 
